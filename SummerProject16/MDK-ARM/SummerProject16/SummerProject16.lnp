@@ -1,0 +1,26 @@
+--cpu Cortex-M0
+"summerproject16\startup_stm32f051x8.o"
+"summerproject16\stm32f0xx_hal_dac.o"
+"summerproject16\stm32f0xx_hal_gpio.o"
+"summerproject16\stm32f0xx_hal_pwr_ex.o"
+"summerproject16\stm32f0xx_hal_pwr.o"
+"summerproject16\stm32f0xx_hal_rcc.o"
+"summerproject16\stm32f0xx_hal_dac_ex.o"
+"summerproject16\stm32f0xx_hal_dma.o"
+"summerproject16\stm32f0xx_hal_tim.o"
+"summerproject16\stm32f0xx_hal.o"
+"summerproject16\stm32f0xx_hal_i2c.o"
+"summerproject16\stm32f0xx_hal_i2c_ex.o"
+"summerproject16\stm32f0xx_hal_cortex.o"
+"summerproject16\stm32f0xx_hal_tim_ex.o"
+"summerproject16\stm32f0xx_hal_rcc_ex.o"
+"summerproject16\stm32f0xx_hal_flash_ex.o"
+"summerproject16\stm32f0xx_hal_flash.o"
+"summerproject16\main.o"
+"summerproject16\stm32f0xx_hal_msp.o"
+"summerproject16\stm32f0xx_it.o"
+"summerproject16\system_stm32f0xx.o"
+--library_type=microlib --strict --scatter "SummerProject16\SummerProject16.sct"
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "SummerProject16.map" -o SummerProject16\SummerProject16.axf

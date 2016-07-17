@@ -78,9 +78,11 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DAC1_Init();
+	HAL_DAC_Start(&hdac1,DAC1_CHANNEL_1);
+	HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,0x800);
 
   /* USER CODE BEGIN 2 */
-
+ // HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -88,7 +90,12 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-
+		if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET){
+			HAL_GPIO_WritePin(GPIOC,LD4_Pin,GPIO_PIN_SET);
+		} else {
+			HAL_GPIO_WritePin(GPIOC,LD4_Pin,GPIO_PIN_RESET);
+		}
+		
   /* USER CODE BEGIN 3 */
 
   }
