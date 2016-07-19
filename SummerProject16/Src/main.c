@@ -42,7 +42,7 @@ DAC_HandleTypeDef hdac1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+int count = 0x00;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -79,7 +79,7 @@ int main(void)
   MX_GPIO_Init();
   MX_DAC1_Init();
 	HAL_DAC_Start(&hdac1,DAC1_CHANNEL_1);
-	HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,0x800);
+	
 
   /* USER CODE BEGIN 2 */
  // HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_SET);
@@ -90,11 +90,20 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-		if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET){
-			HAL_GPIO_WritePin(GPIOC,LD4_Pin,GPIO_PIN_SET);
-		} else {
-			HAL_GPIO_WritePin(GPIOC,LD4_Pin,GPIO_PIN_RESET);
+		if(count > 0xFF0)
+		{
+			count = 0x00;
 		}
+		HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,count);
+		HAL_Delay(10);
+		count+=10;
+	/*	
+		if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET){
+			HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,0xFFF);
+		} else {
+			HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,0x00);
+		}
+	*/
 		
   /* USER CODE BEGIN 3 */
 
